@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Punishment</title>
+</head>
+<body>
+    <p id="container"></p>
+    <script>
+        const fetchData = async () => {
+            const res = await fetch('http://localhost:8080/');
+            const container = document.getElementById('container');
+            const json = await res.json();
+
+            for(const row of json) {
+                const newChild = document.createElement('div');
+                container.appendChild(newChild);
+            }
+        };
+        fetchData();
+    </script>
+</body>
+</html>
