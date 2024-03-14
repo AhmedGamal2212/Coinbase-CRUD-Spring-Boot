@@ -1,10 +1,15 @@
 package com.jetbrains.gemmy.punishment.model;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 @Component
+@Setter
+@Getter
 public class Btc {
     private long timestampInSeconds;
     private double lowPrice;
@@ -13,63 +18,15 @@ public class Btc {
     private double closePrice;
     private double volume;
 
-    public long getTimestampInSeconds() {
-        return timestampInSeconds;
-    }
-
-    public void setTimestampInSeconds(long timestampInSeconds) {
-        this.timestampInSeconds = timestampInSeconds;
-    }
-
-    public double getLowPrice() {
-        return lowPrice;
-    }
-
-    public void setLowPrice(double lowPrice) {
-        this.lowPrice = lowPrice;
-    }
-
-    public double getHighPrice() {
-        return highPrice;
-    }
-
-    public void setHighPrice(double highPrice) {
-        this.highPrice = highPrice;
-    }
-
-    public double getOpenPrice() {
-        return openPrice;
-    }
-
-    public void setOpenPrice(double openPrice) {
-        this.openPrice = openPrice;
-    }
-
-    public double getClosePrice() {
-        return closePrice;
-    }
-
-    public void setClosePrice(double closePrice) {
-        this.closePrice = closePrice;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
     public static Btc mapToBtc(ArrayList<Double> splittedData) {
         Btc btc = new Btc();
 
-        btc.timestampInSeconds = splittedData.get(0).longValue();
-        btc.lowPrice = splittedData.get(1);
-        btc.highPrice = splittedData.get(2);
-        btc.openPrice = splittedData.get(3);
-        btc.closePrice = splittedData.get(4);
-        btc.volume = splittedData.get(5);
+        btc.setTimestampInSeconds(splittedData.get(0).longValue());
+        btc.setLowPrice(splittedData.get(1));
+        btc.setHighPrice(splittedData.get(2));
+        btc.setOpenPrice(splittedData.get(3));
+        btc.setClosePrice(splittedData.get(4));
+        btc.setVolume(splittedData.get(5));
 
         return btc;
     }
