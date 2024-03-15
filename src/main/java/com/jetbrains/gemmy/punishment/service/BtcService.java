@@ -1,6 +1,7 @@
 package com.jetbrains.gemmy.punishment.service;
 
 import com.jetbrains.gemmy.punishment.model.Btc;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,7 +13,7 @@ public class BtcService {
     private final String url = "https://api.pro.coinbase.com/products/BTC-USD/candles/1m";
     private final ArrayList<ArrayList<Double>> btcInfo;
 
-    public BtcService(RestTemplate restTemplate) {
+    public BtcService(@NotNull RestTemplate restTemplate) {
         btcInfo = restTemplate.getForObject(url, ArrayList.class);
     }
 

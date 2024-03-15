@@ -57,7 +57,14 @@ class BtcServiceTest {
     void addShouldInsertNewBtcInfoRow() {
         double timestampInSeconds = 1d, lowPrice = 2d, highPrice = 3d, openPrice = 4d, closePrice = 5d, volume = 6d;
         ArrayList<Double> btcInfoRow = new ArrayList<>(
-                Arrays.asList(timestampInSeconds, lowPrice, highPrice, openPrice, closePrice, volume)
+                Arrays.asList(
+                        timestampInSeconds,
+                        lowPrice,
+                        highPrice,
+                        openPrice,
+                        closePrice,
+                        volume
+                )
         );
         Btc btc = Btc.mapToBtc(btcInfoRow);
 
@@ -73,13 +80,27 @@ class BtcServiceTest {
     void modifyShouldChangeBtcInfoRowUsingId() {
         double timestampInSeconds = 1d, lowPrice = 2d, highPrice = 3d, openPrice = 4d, closePrice = 5d, volume = 6d;
         ArrayList<Double> btcInfoRow = new ArrayList<>(
-                Arrays.asList(timestampInSeconds, lowPrice, highPrice, openPrice, closePrice, volume)
+                Arrays.asList(
+                        timestampInSeconds,
+                        lowPrice,
+                        highPrice,
+                        openPrice,
+                        closePrice,
+                        volume
+                )
         );
 
         btcService.add(Btc.mapToBtc(btcInfoRow));
 
         ArrayList<Double> modifiedBtcInfoRow = new ArrayList<>(
-                Arrays.asList(timestampInSeconds + 1, lowPrice + 1, highPrice + 1, openPrice + 1, closePrice + 1, volume + 1)
+                Arrays.asList(
+                        timestampInSeconds + 1,
+                        lowPrice + 1,
+                        highPrice + 1,
+                        openPrice + 1,
+                        closePrice + 1,
+                        volume + 1
+                )
         );
 
         btcService.modify(301, Btc.mapToBtc(modifiedBtcInfoRow));

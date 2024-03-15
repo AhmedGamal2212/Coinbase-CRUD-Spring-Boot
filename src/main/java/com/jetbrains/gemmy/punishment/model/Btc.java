@@ -1,8 +1,6 @@
 package com.jetbrains.gemmy.punishment.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,6 +8,9 @@ import java.util.ArrayList;
 @Component
 @Setter
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Btc {
     private long timestampInSeconds;
     private double lowPrice;
@@ -19,28 +20,24 @@ public class Btc {
     private double volume;
 
     public static Btc mapToBtc(ArrayList<Double> splittedData) {
-        Btc btc = new Btc();
-
-        btc.setTimestampInSeconds(splittedData.get(0).longValue());
-        btc.setLowPrice(splittedData.get(1));
-        btc.setHighPrice(splittedData.get(2));
-        btc.setOpenPrice(splittedData.get(3));
-        btc.setClosePrice(splittedData.get(4));
-        btc.setVolume(splittedData.get(5));
-
-        return btc;
+        return Btc.builder()
+                .timestampInSeconds(splittedData.get(0).longValue())
+                .lowPrice(splittedData.get(1))
+                .highPrice(splittedData.get(2))
+                .openPrice(splittedData.get(3))
+                .closePrice(splittedData.get(4))
+                .volume(splittedData.get(5))
+                .build();
     }
 
     public ArrayList<Double> toInfoRow() {
-        ArrayList<Double> btcInfoRow = new ArrayList<>();
-
-        btcInfoRow.add((double)timestampInSeconds);
-        btcInfoRow.add(lowPrice);
-        btcInfoRow.add(highPrice);
-        btcInfoRow.add(openPrice);
-        btcInfoRow.add(closePrice);
-        btcInfoRow.add(volume);
-
-        return btcInfoRow;
+        return new ArrayList<>() {{
+            add((double) timestampInSeconds);
+            add(lowPrice);
+            add(highPrice);
+            add(openPrice);
+            add(closePrice);
+            add(volume);
+        }};
     }
 }
